@@ -1,0 +1,39 @@
+---
+// Animación de "escritura" solo con CSS (sin JavaScript).
+// Con prefers-reduced-motion se muestra el texto completo y estático.
+const lineas = [
+  { t: '$ claude', n: 8 },
+  { t: '> predice: ¿qué voy a ver?', n: 26 },
+  { t: '> revisa el diff', n: 16 },
+  { t: '> explica con tus palabras', n: 26 },
+];
+---
+
+<div class="term" role="img" aria-label="Simulación de una sesión de terminal: predecir, revisar el diff y explicar.">
+  <pre aria-hidden="true">{
+    lineas.map((l, i) => (
+      <span class="line" style={`--n:${l.n};--d:${i * 1.4}s`}>{l.t}</span>
+    ))
+  }<span class="cursor"></span></pre>
+</div>
+
+<style>
+  .line {
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 0;
+    animation: type 1.2s steps(var(--n)) var(--d) forwards;
+  }
+  @keyframes type {
+    to {
+      width: calc(var(--n) * 1ch);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .line {
+      width: auto;
+      animation: none;
+    }
+  }
+</style>

@@ -1,0 +1,42 @@
+---
+import { SITE } from '../site';
+
+const filas: { item: string; gratis: string; premium: boolean | string }[] = [
+  { item: '10 semanas de contenido', gratis: 'Incluido', premium: true },
+  { item: 'Laboratorios y retos', gratis: 'Incluido', premium: true },
+  { item: 'PDF descargable del curso', gratis: 'Incluido (con correo)', premium: true },
+  { item: 'Plugin visitas-toolkit listo para instalar', gratis: '', premium: true },
+  { item: 'Subagentes y skills adicionales', gratis: '', premium: true },
+  { item: 'Repositorio final comentado', gratis: '', premium: true },
+  { item: 'Certificado de finalización', gratis: '', premium: true },
+];
+---
+
+<div class="overflow-x-auto">
+  <table class="w-full border-collapse text-sm">
+    <caption class="text-left text-muted pb-3">Comparación entre el curso gratuito y el Kit Premium.</caption>
+    <thead>
+      <tr class="border-b border-border">
+        <th scope="col" class="text-left p-3">Qué incluye</th>
+        <th scope="col" class="text-left p-3">Gratis</th>
+        <th scope="col" class="text-left p-3">Kit Premium</th>
+      </tr>
+    </thead>
+    <tbody>
+      {
+        filas.map((f) => (
+          <tr class="border-b border-border">
+            <th scope="row" class="text-left font-normal p-3">{f.item}</th>
+            <td class="p-3">{f.gratis ? `✔ ${f.gratis}` : 'No incluido'}</td>
+            <td class="p-3">{f.premium ? '✔ Incluido' : 'No incluido'}</td>
+          </tr>
+        ))
+      }
+      <tr>
+        <th scope="row" class="text-left font-normal p-3">Precio</th>
+        <td class="p-3">Gratis</td>
+        <td class="p-3">{SITE.premiumBuyUrl ? 'Ver en la página del kit' : 'Próximamente'}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

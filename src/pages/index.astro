@@ -1,0 +1,109 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import ModuleCard from '../components/ModuleCard.astro';
+import PricingTable from '../components/PricingTable.astro';
+import Faq from '../components/Faq.astro';
+import SubscribeForm from '../components/SubscribeForm.astro';
+import { SITE } from '../site';
+
+const modulos = (await getCollection('modulos'))
+  .filter((m) => m.data.semana >= 1)
+  .sort((a, b) => a.data.numero - b.data.numero);
+---
+
+<BaseLayout
+  title="Claude Code desde cero: curso gratis en español (10 semanas)"
+  description="Aprende a programar con IA en 40 minutos al día. Proyecto real VisitasAPI en .NET 8. Gratis y en español."
+>
+  <Hero />
+
+  <section class="container py-12 grid gap-4" aria-labelledby="problema">
+    <h2 id="problema" class="font-title text-xl m-0">¿Usas la IA pero no entiendes lo que genera?</h2>
+    <ul class="m-0 text-muted" style="max-width: var(--measure)">
+      <li>Copias y pegas código que funciona, pero no sabes por qué.</li>
+      <li>Si te piden explicarlo en una entrevista o en una revisión, te quedas en blanco.</li>
+      <li>Cada herramienta nueva promete mucho y tú sigues improvisando prompts.</li>
+    </ul>
+    <p class="m-0 font-title">El problema no es la IA. Es no tener un método.</p>
+  </section>
+
+  <section class="container py-12 grid gap-4" aria-labelledby="metodo">
+    <h2 id="metodo" class="font-title text-xl m-0">Una regla de oro: predecir, revisar, explicar</h2>
+    <ul class="grid gap-3 md:grid-cols-3 list-none p-0 m-0">
+      <li class="bg-surface border border-border rounded-lg p-6"><strong class="font-title text-accent">Predice:</strong> antes de pedirle algo a Claude, anota qué esperas que haga.</li>
+      <li class="bg-surface border border-border rounded-lg p-6"><strong class="font-title text-accent">Revisa el diff:</strong> lee cada cambio antes de aceptarlo.</li>
+      <li class="bg-surface border border-border rounded-lg p-6"><strong class="font-title text-accent">Explica:</strong> si no puedes explicarlo con tus palabras, no entra a tu proyecto.</li>
+    </ul>
+    <p class="m-0 text-muted"><strong class="text-text">Ritmo:</strong> lunes a viernes 40 minutos, sábado 20, domingo 15. Constancia sin agotarte.</p>
+  </section>
+
+  <section id="temario" class="container py-12 grid gap-6 scroll-mt-8" aria-labelledby="temario-t">
+    <h2 id="temario-t" class="font-title text-xl m-0">10 semanas, cada una con un resultado que puedes mostrar</h2>
+    <ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 list-none p-0 m-0">
+      {
+        modulos.map((m) => (
+          <li>
+            <ModuleCard
+              slug={m.slug}
+              numero={m.data.numero}
+              titulo={m.data.titulo}
+              objetivo={m.data.objetivo}
+              semana={m.data.semana}
+              premium={m.data.premium}
+            />
+          </li>
+        ))
+      }
+    </ul>
+    <div><a href="#suscribirse" class="btn-primary">Empieza gratis</a></div>
+  </section>
+
+  <section class="container py-12 grid gap-4" aria-labelledby="proyecto">
+    <h2 id="proyecto" class="font-title text-xl m-0">Construyes VisitasAPI, no ejemplos de juguete</h2>
+    <p class="m-0 text-muted" style="max-width: var(--measure)">
+      Una API en .NET 8 con Clean Architecture, pruebas y configuración profesional de Claude Code.
+      Al final tendrás el repositorio en tu GitHub, listo para mostrar en tu perfil.
+    </p>
+  </section>
+
+  <section class="container py-12 grid gap-4" aria-labelledby="paraquien">
+    <h2 id="paraquien" class="font-title text-xl m-0">Hecho para quien está empezando en serio</h2>
+    <div class="grid gap-4 md:grid-cols-3">
+      <p class="bg-surface border border-border rounded-lg p-6 m-0"><strong class="font-title text-accent">Es para ti si:</strong> eres estudiante, técnico o desarrollador junior en Latinoamérica y ya sabes lo básico de programación.</p>
+      <p class="bg-surface border border-border rounded-lg p-6 m-0"><strong class="font-title text-accent">Necesitas:</strong> un computador con Windows, macOS o Linux, .NET 8, Git y una cuenta para usar Claude Code.</p>
+      <p class="bg-surface border border-border rounded-lg p-6 m-0"><strong class="font-title text-accent">No es para ti si:</strong> buscas que la IA programe por ti sin entender el resultado.</p>
+    </div>
+  </section>
+
+  <section class="container py-12 grid gap-4" aria-labelledby="kevin">
+    <h2 id="kevin" class="font-title text-xl m-0">Lo armé porque yo también lo necesité</h2>
+    <p class="m-0 text-muted" style="max-width: var(--measure)">
+      Soy Kevin Castro Gómez, técnico en desarrollo de software y estudiante de Ingeniería de Software.
+      Trabajo con análisis de datos en el sector público. Creé este curso para compartir lo que aprendo,
+      en español y paso a paso.
+    </p>
+    <div><a href="/sobre-mi/">Conoce más</a></div>
+  </section>
+
+  <section class="container py-12 grid gap-4" aria-labelledby="premium">
+    <h2 id="premium" class="font-title text-xl m-0">El curso completo es gratis. El kit te ahorra tiempo.</h2>
+    <PricingTable />
+    <p class="m-0 text-muted text-sm">El Kit Premium es un complemento, no es necesario para terminar el curso. <a href="/premium/">Más información</a></p>
+  </section>
+
+  <section class="container py-12 grid gap-4" aria-labelledby="faq">
+    <h2 id="faq" class="font-title text-xl m-0">Preguntas frecuentes</h2>
+    <Faq />
+  </section>
+
+  <section class="container py-12 grid gap-4" aria-labelledby="cta">
+    <h2 id="cta" class="font-title text-xl m-0">Empieza hoy. Tu primera sesión dura 40 minutos.</h2>
+    <p class="m-0 text-muted" style="max-width: var(--measure)">
+      Déjame tu correo y te envío la bienvenida con el PDF del curso y el enlace al primer módulo.
+    </p>
+    <SubscribeForm />
+    <p class="m-0"><a href={SITE.linkedin} target="_blank" rel="noopener noreferrer">Sígueme en LinkedIn</a></p>
+  </section>
+</BaseLayout>

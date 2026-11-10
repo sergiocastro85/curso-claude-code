@@ -1,0 +1,84 @@
+---
+import '../styles/global.css';
+import '../styles/buttons.css';
+import SeoHead from '../components/SeoHead.astro';
+import { SITE } from '../site';
+
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  type?: 'website' | 'article';
+  noindex?: boolean;
+}
+
+const { title, description = SITE.descripcion, image, type, noindex } = Astro.props;
+const nav = [
+  { href: '/curso/', label: 'Curso' },
+  { href: '/recursos/', label: 'Recursos' },
+  { href: '/premium/', label: 'Premium' },
+  { href: '/sobre-mi/', label: 'Sobre mí' },
+];
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <SeoHead title={title} description={description} image={image} type={type} noindex={noindex} />
+    {
+      SITE.analyticsToken && (
+        <script
+          defer
+          src="https://static.cloudflareinsights.com/beacon.min.js"
+          data-cf-beacon={JSON.stringify({ token: SITE.analyticsToken })}
+        />
+      )
+    }
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <a href="#contenido" class="skip-link">Saltar al contenido</a>
+    <header class="border-b border-border">
+      <div class="container flex flex-wrap items-center justify-between gap-x-6 gap-y-2 py-3">
+        <a href="/" class="font-title font-bold text-text no-underline hover:text-accent min-h-11 inline-flex items-center">
+          <span class="text-accent">&gt;_</span>&nbsp;claude-code-desde-cero
+        </a>
+        <nav aria-label="Principal">
+          <ul class="flex flex-wrap gap-x-5 list-none m-0 p-0 text-sm">
+            {
+              nav.map((n) => (
+                <li>
+                  <a href={n.href} class="inline-flex min-h-11 items-center text-text hover:text-accent">
+                    {n.label}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="contenido" class="flex-1">
+      <slot />
+    </main>
+
+    <footer class="border-t border-border bg-surface mt-16">
+      <div class="container py-8 grid gap-4 text-sm">
+        <ul class="flex flex-wrap gap-x-6 list-none m-0 p-0">
+          <li><a class="inline-flex min-h-11 items-center" href="/privacidad/">Privacidad</a></li>
+          <li><a class="inline-flex min-h-11 items-center" href="/recursos/">Recursos</a></li>
+          <li><a class="inline-flex min-h-11 items-center" href="/sobre-mi/">Sobre mí</a></li>
+        </ul>
+        <p class="text-muted m-0">{SITE.descargo}</p>
+        <p class="text-muted m-0">
+          Contenido gratuito bajo licencia CC BY-NC 4.0 (por confirmar). &copy; {new Date().getFullYear()}
+          {SITE.autor}.
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

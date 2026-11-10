@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE } from '../site';
+---
+
+<BaseLayout title="Política de tratamiento de datos · Claude Code desde cero" description="Cómo se tratan tus datos personales según la Ley 1581 de 2012 y el Decreto 1377 de 2013.">
+  <div class="container py-12 grid gap-4" style="max-width: 48rem">
+    <h1 class="font-title text-2xl m-0">Política de tratamiento de datos</h1>
+    <p class="m-0 text-muted">
+      Plantilla de buena fe, pendiente de revisión por un abogado antes del lanzamiento.
+    </p>
+
+    <h2 class="font-title text-xl mb-0">Responsable</h2>
+    <p class="m-0">
+      {SITE.autor}. Correo de contacto: {SITE.contacto || '[por definir antes de publicar]'}.
+    </p>
+
+    <h2 class="font-title text-xl mb-0">Datos que recolectamos</h2>
+    <p class="m-0">Únicamente tu correo electrónico.</p>
+
+    <h2 class="font-title text-xl mb-0">Finalidad</h2>
+    <p class="m-0">Enviarte el curso, el PDF y comunicaciones relacionadas con el curso. No vendemos ni cedemos tus datos.</p>
+
+    <h2 class="font-title text-xl mb-0">Tus derechos</h2>
+    <p class="m-0">Como titular puedes conocer, actualizar, rectificar y suprimir tus datos, y revocar tu autorización, conforme a la Ley 1581 de 2012 y el Decreto 1377 de 2013.</p>
+
+    <h2 class="font-title text-xl mb-0">Cómo ejercer tus derechos</h2>
+    <p class="m-0">Escribe al correo de contacto indicando tu solicitud. También puedes darte de baja desde el enlace incluido en cada correo.</p>
+
+    <h2 class="font-title text-xl mb-0">Terceros</h2>
+    <p class="m-0">Tu correo se almacena en el servicio de email que usamos para enviar los mensajes (por definir) y la analítica del sitio no usa cookies.</p>
+  </div>
+</BaseLayout>

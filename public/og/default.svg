@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <!-- Placeholder de marca propia (colores del sistema de diseño, modo oscuro). Sin identidad de Anthropic. -->
+  <rect width="1200" height="630" fill="#1a1613"/>
+  <text x="80" y="140" font-family="Consolas, monospace" font-size="72" font-weight="700" fill="#ff8a3d">&gt;_</text>
+  <text x="80" y="300" font-family="Consolas, monospace" font-size="72" font-weight="700" fill="#f3ebe1">Claude Code</text>
+  <text x="80" y="390" font-family="Consolas, monospace" font-size="72" font-weight="700" fill="#f3ebe1">desde cero</text>
+  <text x="80" y="480" font-family="Arial, sans-serif" font-size="36" fill="#bfb2a3">Curso gratis en español · 10 semanas · 40 min al día</text>
+  <text x="80" y="570" font-family="Arial, sans-serif" font-size="26" fill="#bfb2a3">Curso independiente, no afiliado a Anthropic</text>
+</svg>

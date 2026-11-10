@@ -1,0 +1,71 @@
+---
+import { SITE } from '../site';
+
+interface Props {
+  id?: string;
+  boton?: string;
+}
+const { id = 'suscribirse', boton = 'Empieza gratis' } = Astro.props;
+
+// Sin servicio de email configurado (PUBLIC_FORM_ACTION vacío) el formulario NO envía el
+// correo a ningún lado: va a /gracias por GET y los campos no tienen "name".
+const configurado = Boolean(SITE.formAction);
+const action = configurado ? SITE.formAction : '/gracias/';
+const method = configurado ? 'post' : 'get';
+---
+
+<form id={id} action={action} method={method} class="grid gap-4 max-w-xl scroll-mt-8">
+  <div class="grid gap-2">
+    <label for={`${id}-email`} class="font-title">Correo electrónico</label>
+    <input
+      id={`${id}-email`}
+      type="email"
+      name={configurado ? 'email' : undefined}
+      required
+      autocomplete="email"
+      class="min-h-12 px-3 rounded-md bg-surface text-text border border-border"
+    />
+  </div>
+
+  <div class="flex gap-3 items-start">
+    <input
+      id={`${id}-auth`}
+      type="checkbox"
+      name={configurado ? 'autorizacion' : undefined}
+      value="si"
+      required
+      class="mt-1 size-5 shrink-0 accent-accent"
+    />
+    <label for={`${id}-auth`} class="text-sm">
+      Autorizo el tratamiento de mi correo para recibir el curso y comunicaciones relacionadas, según la
+      <a href="/privacidad/">Política de privacidad</a> (Ley 1581 de 2012).
+    </label>
+  </div>
+
+  <p class="form-error text-danger text-sm m-0" role="alert" aria-live="polite" hidden></p>
+
+  <div>
+    <button type="submit" class="btn-primary">{boton}</button>
+  </div>
+</form>
+
+<!-- JS justificado (~0,5 KB): validar la casilla con el mensaje en español y sin perder lo escrito.
+     Sin JS, el formulario sigue siendo válido con los atributos "required" del navegador. -->
+<script>
+  document.querySelectorAll<HTMLFormElement>('form[id]').forEach((form) => {
+    const auth = form.querySelector<HTMLInputElement>('input[type=checkbox]');
+    const email = form.querySelector<HTMLInputElement>('input[type=email]');
+    const err = form.querySelector<HTMLElement>('.form-error');
+    if (!auth || !email || !err) return;
+    form.addEventListener('submit', (e) => {
+      let msg = '';
+      if (!email.validity.valid) msg = 'Escribe un correo electrónico válido.';
+      else if (!auth.checked) msg = 'Para continuar debes aceptar la autorización de datos.';
+      if (msg) {
+        e.preventDefault();
+        err.textContent = msg;
+        err.hidden = false;
+      }
+    });
+  });
+</script>

@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PricingTable from '../components/PricingTable.astro';
+import SubscribeForm from '../components/SubscribeForm.astro';
+import { SITE } from '../site';
+---
+
+<BaseLayout title="Kit Premium · Claude Code desde cero" description="El Kit Premium reúne plugin, subagentes, skills y el repositorio final comentado. El curso completo sigue siendo gratis.">
+  <div class="container py-12 grid gap-8">
+    <h1 class="font-title text-2xl m-0">Kit Premium</h1>
+    <p class="m-0 text-muted" style="max-width: var(--measure)">
+      Un complemento para ahorrar tiempo: plugin <code>visitas-toolkit</code>, subagentes y skills extra,
+      repositorio final comentado y certificado de finalización. No es necesario para terminar el curso y
+      no promete resultados laborales.
+    </p>
+    <PricingTable />
+    {
+      SITE.premiumBuyUrl ? (
+        <div><a class="btn-primary" href={SITE.premiumBuyUrl} rel="noopener noreferrer">Comprar el kit</a></div>
+      ) : (
+        <section class="grid gap-4" aria-labelledby="aviso">
+          <h2 id="aviso" class="font-title text-xl m-0">Próximamente: avísame</h2>
+          <p class="m-0 text-muted">Aún no está a la venta. Déjame tu correo y te aviso cuando salga.</p>
+          <SubscribeForm id="suscribirse-premium" boton="Avísame" />
+        </section>
+      )
+    }
+  </div>
+</BaseLayout>

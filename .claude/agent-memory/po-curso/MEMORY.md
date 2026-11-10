@@ -1,0 +1,2 @@
+- [Decisiones de producto v1](project_decisiones_v1.md) — slugs, temario, precio pendiente, email/pago sin decidir
+- [Validación 2026-11-05](project_validacion_2026-11-05.md) — 8 aceptadas, 9 parciales; causa: falta .env; bug novalidate

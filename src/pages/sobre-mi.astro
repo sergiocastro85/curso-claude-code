@@ -1,0 +1,23 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE } from '../site';
+---
+
+<BaseLayout title="Sobre mí · Claude Code desde cero" description="Kevin Castro Gómez: por qué creó este curso gratuito de Claude Code en español.">
+  <div class="container py-12 grid gap-6" style="max-width: 48rem">
+    <h1 class="font-title text-2xl m-0">Lo armé porque yo también lo necesité</h1>
+    <p class="m-0">
+      Soy Kevin Castro Gómez, técnico en desarrollo de software y estudiante de Ingeniería de Software.
+      Trabajo con análisis de datos en el sector público.
+    </p>
+    <p class="m-0 text-muted">
+      Creé este curso para compartir lo que aprendo, en español y paso a paso, con una regla simple:
+      predecir, revisar el diff y explicar.
+    </p>
+    <p class="m-0">
+      <a href={SITE.linkedin} target="_blank" rel="noopener noreferrer">Sígueme en LinkedIn</a> ·
+      Para temas de datos personales, consulta la <a href="/privacidad/">política de privacidad</a>.
+    </p>
+    <div><a class="btn-primary" href="/#suscribirse">Empieza gratis</a></div>
+  </div>
+</BaseLayout>

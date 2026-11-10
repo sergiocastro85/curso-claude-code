@@ -1,0 +1,23 @@
+---
+import { getCollection } from 'astro:content';
+import ModuleLayout from '../../layouts/ModuleLayout.astro';
+
+export async function getStaticPaths() {
+  const modulos = (await getCollection('modulos')).sort((a, b) => a.data.numero - b.data.numero);
+  return modulos.map((entry, i) => ({
+    params: { slug: entry.slug },
+    props: {
+      entry,
+      anterior: modulos[i - 1] && { slug: modulos[i - 1].slug, titulo: modulos[i - 1].data.titulo },
+      siguiente: modulos[i + 1] && { slug: modulos[i + 1].slug, titulo: modulos[i + 1].data.titulo },
+    },
+  }));
+}
+
+const { entry, anterior, siguiente } = Astro.props;
+const { Content } = await entry.render();
+---
+
+<ModuleLayout {...entry.data} anterior={anterior} siguiente={siguiente}>
+  <Content />
+</ModuleLayout>

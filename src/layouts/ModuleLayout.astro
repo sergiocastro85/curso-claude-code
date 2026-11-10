@@ -1,0 +1,85 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  titulo: string;
+  numero: number;
+  semana: number;
+  objetivo: string;
+  duracionMinutos: number;
+  premium: boolean;
+  fuentes: { titulo: string; url: string }[];
+  ogImage?: string;
+  anterior?: { slug: string; titulo: string };
+  siguiente?: { slug: string; titulo: string };
+}
+const { titulo, numero, semana, objetivo, duracionMinutos, premium, fuentes, ogImage, anterior, siguiente } = Astro.props;
+const etiqueta = semana > 0 ? `Semana ${semana} de 10` : 'Antes de empezar';
+---
+
+<BaseLayout title={`${titulo} · Claude Code desde cero`} description={objetivo} image={ogImage} type="article">
+  <article class="container py-12">
+    <p class="font-title text-accent text-sm m-0">{etiqueta} · {duracionMinutos} min</p>
+    <h1 class="font-title text-2xl mt-2 mb-4">{numero}. {titulo}</h1>
+    <p class="text-lg text-muted" style="max-width: var(--measure)"><strong class="text-text">Al terminar:</strong> {objetivo}</p>
+    {premium && (
+      <p class="text-sm border border-border rounded-md p-3 bg-surface" style="max-width: var(--measure)">
+        Este módulo tiene material extra en el Kit Premium. El contenido base de esta página es completo y gratuito.
+      </p>
+    )}
+
+    <div class="prose-curso">
+      <slot />
+    </div>
+
+    <section aria-labelledby="fuentes" class="mt-12" style="max-width: var(--measure)">
+      <h2 id="fuentes" class="font-title text-xl">Fuentes oficiales</h2>
+      <ul>
+        {fuentes.map((f) => <li><a href={f.url} target="_blank" rel="noopener noreferrer">{f.titulo}</a></li>)}
+      </ul>
+    </section>
+
+    <nav aria-label="Módulos" class="mt-12 flex flex-wrap justify-between gap-4">
+      {anterior ? <a class="btn-secondary" href={`/curso/${anterior.slug}/`}>← Anterior: {anterior.titulo}</a> : <span />}
+      {siguiente ? <a class="btn-primary" href={`/curso/${siguiente.slug}/`}>Siguiente: {siguiente.titulo} →</a> : <span />}
+    </nav>
+  </article>
+</BaseLayout>
+
+<style is:global>
+  .prose-curso {
+    max-width: var(--measure);
+    margin-top: var(--space-8);
+  }
+  .prose-curso h2 {
+    font-family: var(--font-mono);
+    font-size: var(--text-xl);
+    margin: var(--space-12) 0 var(--space-3);
+  }
+  .prose-curso p,
+  .prose-curso ul,
+  .prose-curso ol,
+  .prose-curso pre {
+    margin: 0 0 var(--space-4);
+  }
+  .prose-curso ul,
+  .prose-curso ol {
+    padding-left: var(--space-6);
+  }
+  .prose-curso li {
+    margin-bottom: var(--space-2);
+  }
+  .prose-curso :not(pre) > code {
+    background: var(--surface-2);
+    padding: 0.1em 0.35em;
+    border-radius: var(--radius-sm);
+    font-size: 0.92em;
+  }
+  .prose-curso blockquote {
+    margin: 0 0 var(--space-4);
+    padding: var(--space-3) var(--space-4);
+    border-left: 3px solid var(--accent);
+    background: var(--surface);
+    color: var(--text-muted);
+  }
+</style>

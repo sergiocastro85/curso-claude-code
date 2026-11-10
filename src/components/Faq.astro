@@ -1,0 +1,62 @@
+---
+const preguntas = [
+  {
+    q: '¿Necesito pagar por Claude?',
+    a: 'Necesitas una cuenta que te permita usar Claude Code. Las condiciones y precios los define Anthropic y cambian; revísalos en su sitio oficial antes de empezar. El curso en sí es gratis.',
+  },
+  {
+    q: '¿Sirve en Windows?',
+    a: 'Sí. El curso está pensado para Windows, y también funciona en macOS y Linux.',
+  },
+  { q: '¿Cuánto tiempo necesito?', a: '40 minutos de lunes a viernes, 20 el sábado y 15 el domingo.' },
+  {
+    q: '¿Qué nivel necesito?',
+    a: 'Saber lo básico de programación. Si conoces C# mejor, pero te lo explicamos sobre la marcha.',
+  },
+  {
+    q: '¿Es un curso oficial de Anthropic?',
+    a: 'No. Es un curso independiente, sin afiliación ni aval de Anthropic.',
+  },
+  {
+    q: '¿Qué hacen con mi correo?',
+    a: 'Solo te envío el curso y novedades relacionadas. Puedes darte de baja en cualquier correo. Detalles en la política de privacidad.',
+  },
+];
+---
+
+<div class="grid gap-3">
+  {
+    preguntas.map((p) => (
+      <details class="faq bg-surface border border-border rounded-md">
+        <summary class="font-title cursor-pointer p-4 min-h-11">{p.q}</summary>
+        <p class="px-4 pb-4 m-0 text-muted">
+          {p.a}
+          {p.q.includes('correo') && (
+            <>
+              {' '}
+              <a href="/privacidad/">Ver política de privacidad</a>.
+            </>
+          )}
+        </p>
+      </details>
+    ))
+  }
+</div>
+
+<style>
+  summary {
+    list-style: none;
+  }
+  summary::-webkit-details-marker {
+    display: none;
+  }
+  summary::before {
+    content: '+';
+    color: var(--accent);
+    display: inline-block;
+    width: 1.5rem;
+  }
+  details[open] > summary::before {
+    content: '−';
+  }
+</style>

@@ -1,0 +1,46 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ModuleCard from '../../components/ModuleCard.astro';
+
+const modulos = (await getCollection('modulos')).sort((a, b) => a.data.numero - b.data.numero);
+---
+
+<BaseLayout
+  title="Temario del curso · Claude Code desde cero"
+  description="Los 11 módulos del curso gratuito: de la instalación de Claude Code al proyecto final VisitasAPI."
+>
+  <div class="container py-12 grid gap-6">
+    <h1 class="font-title text-2xl m-0">El curso, de un vistazo</h1>
+    <p class="m-0 text-muted" style="max-width: var(--measure)">
+      10 semanas más un módulo de preparación. Cada módulo tiene teoría, laboratorio, reto y preguntas de repaso.
+    </p>
+
+    <ol class="grid grid-cols-10 gap-1 list-none p-0 m-0" aria-label="Las 10 semanas del curso">
+      {
+        Array.from({ length: 10 }, (_, i) => (
+          <li class="h-3 rounded-sm bg-accent">
+            <span class="sr-only">Semana {i + 1} de 10</span>
+          </li>
+        ))
+      }
+    </ol>
+
+    <ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 list-none p-0 m-0">
+      {
+        modulos.map((m) => (
+          <li>
+            <ModuleCard
+              slug={m.slug}
+              numero={m.data.numero}
+              titulo={m.data.titulo}
+              objetivo={`${m.data.objetivo} (${m.data.duracionMinutos} min)`}
+              semana={m.data.semana}
+              premium={m.data.premium}
+            />
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</BaseLayout>

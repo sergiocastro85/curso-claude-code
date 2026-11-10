@@ -1,0 +1,62 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SubscribeForm from '../components/SubscribeForm.astro';
+
+const claudeMd = `# VisitasAPI
+API en .NET 8 con Clean Architecture.
+
+## Comandos
+- Compilar: dotnet build
+- Probar: dotnet test
+
+## Reglas
+- Domain no depende de nada; Api no contiene lógica de negocio.
+- Nombres del dominio en español.
+- Cada cambio nuevo lleva su prueba xUnit.`;
+
+const settings = `{
+  "permissions": {
+    "allow": ["Bash(dotnet build *)", "Bash(dotnet test *)"],
+    "ask": ["Bash(git push *)"],
+    "deny": ["Read(./.env)"]
+  }
+}`;
+
+const agente = `---
+name: revisor
+description: Revisa cambios de código y señala problemas de capas, nombres y pruebas.
+tools: Read, Grep, Glob
+---
+
+Eres un revisor de código de VisitasAPI. Lee el diff, señala problemas
+y explica por qué importan. No modifiques archivos.`;
+
+const recursos = [
+  { t: 'Plantilla de CLAUDE.md', d: 'Guárdala como CLAUDE.md en la raíz de tu proyecto y adáptala. Se explica en el módulo 2.', c: claudeMd },
+  { t: 'Ejemplo de settings.json', d: 'Guárdalo como .claude/settings.json. Se explica en el módulo 5.', c: settings },
+  { t: 'Ejemplo de subagente', d: 'Guárdalo como .claude/agents/revisor.md. Se explica en el módulo 7.', c: agente },
+];
+---
+
+<BaseLayout title="Recursos gratuitos · Claude Code desde cero" description="Plantillas gratuitas de CLAUDE.md, settings.json y subagentes para empezar con Claude Code.">
+  <div class="container py-12 grid gap-8">
+    <h1 class="font-title text-2xl m-0">Recursos gratuitos</h1>
+    <p class="m-0 text-muted" style="max-width: var(--measure)">
+      Plantillas para copiar y adaptar. Licencia sugerida: CC BY-NC 4.0 (por confirmar por el autor).
+    </p>
+    {
+      recursos.map((r) => (
+        <section class="grid gap-2">
+          <h2 class="font-title text-xl m-0">{r.t}</h2>
+          <p class="m-0 text-muted">{r.d}</p>
+          <pre><code>{r.c}</code></pre>
+        </section>
+      ))
+    }
+    <section class="grid gap-4" aria-labelledby="pdf">
+      <h2 id="pdf" class="font-title text-xl m-0">PDF del curso</h2>
+      <p class="m-0 text-muted">Recíbelo en tu correo con tu autorización de datos.</p>
+      <SubscribeForm id="suscribirse-recursos" boton="Quiero el PDF" />
+    </section>
+  </div>
+</BaseLayout>

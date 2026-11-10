@@ -1,0 +1,1 @@
+- [Decisiones de diseño](design_decisions.md) — paleta cobre, tema claro/oscuro, fuentes del sistema, Tailwind v4
