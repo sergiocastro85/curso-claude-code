@@ -9,7 +9,6 @@ import SubscribeForm from '../components/SubscribeForm.astro';
 import { SITE } from '../site';
 
 const modulos = (await getCollection('modulos'))
-  .filter((m) => m.data.semana >= 1)
   .sort((a, b) => a.data.numero - b.data.numero);
 ---
 
@@ -63,8 +62,8 @@ const modulos = (await getCollection('modulos'))
   <section class="container py-12 grid gap-4" aria-labelledby="proyecto">
     <h2 id="proyecto" class="font-title text-xl m-0">Construyes VisitasAPI, no ejemplos de juguete</h2>
     <p class="m-0 text-muted" style="max-width: var(--measure)">
-      Una API en .NET 8 con Clean Architecture, pruebas y configuración profesional de Claude Code.
-      Al final tendrás el repositorio en tu GitHub, listo para mostrar en tu perfil.
+      Una API en .NET 8 con Clean Architecture. Empiezas con el esqueleto en la semana 1 y cierras con un módulo de reportes mensuales de visitas por comuna, apoyado en memoria, permisos, hooks, subagentes y skills.
+      Al final tendrás un proyecto con configuración profesional de Claude Code (carpeta <code>.claude/</code>, hooks, subagente revisor y skills) que puedes explicar línea por línea.
     </p>
   </section>
 
@@ -77,12 +76,11 @@ const modulos = (await getCollection('modulos'))
     </div>
   </section>
 
-  <section class="container py-12 grid gap-4" aria-labelledby="kevin">
-    <h2 id="kevin" class="font-title text-xl m-0">Lo armé porque yo también lo necesité</h2>
+  <section class="container py-12 grid gap-4" aria-labelledby="autor">
+    <h2 id="autor" class="font-title text-xl m-0">Lo armé porque yo también lo necesité</h2>
     <p class="m-0 text-muted" style="max-width: var(--measure)">
-      Soy Kevin Castro Gómez, técnico en desarrollo de software y estudiante de Ingeniería de Software.
-      Trabajo con análisis de datos en el sector público. Creé este curso para compartir lo que aprendo,
-      en español y paso a paso.
+      Soy Sergio Andrés Castro Cano, ingeniero de sistemas con más de 5 años de experiencia en desarrollo
+      y soporte de soluciones de software. Creé este curso para compartir lo que aprendo, en español y paso a paso.
     </p>
     <div><a href="/sobre-mi/">Conoce más</a></div>
   </section>
@@ -101,7 +99,7 @@ const modulos = (await getCollection('modulos'))
   <section class="container py-12 grid gap-4" aria-labelledby="cta">
     <h2 id="cta" class="font-title text-xl m-0">Empieza hoy. Tu primera sesión dura 40 minutos.</h2>
     <p class="m-0 text-muted" style="max-width: var(--measure)">
-      Déjame tu correo y te envío la bienvenida con el PDF del curso y el enlace al primer módulo.
+      Déjame tu correo y te envío la bienvenida con el enlace al primer módulo (Introducción a Claude Code).
     </p>
     <SubscribeForm />
     <p class="m-0"><a href={SITE.linkedin} target="_blank" rel="noopener noreferrer">Sígueme en LinkedIn</a></p>

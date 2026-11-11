@@ -45,7 +45,7 @@
 /curso/proyecto-final   Semana 10
 /recursos               Plantillas gratuitas: CLAUDE.md, settings.json, agentes
 /premium                Página de venta del Kit Premium
-/sobre-mi               Kevin: historia, por qué creó el curso
+/sobre-mi               Autor: historia, por qué creó el curso
 /gracias                Confirmación tras suscribirse o comprar
 /privacidad             Política de tratamiento de datos (obligatoria)
 ```
@@ -64,7 +64,7 @@ La landing es un embudo: cada sección empuja a la siguiente y todas llevan al m
 | 4 | **Temario** | Valor concreto | 9 tarjetas de módulos + proyecto final, cada una con un resultado tangible |
 | 5 | **Proyecto real** | Prueba | VisitasAPI en .NET 8 con Clean Architecture: lo que tendrás en tu GitHub al final |
 | 6 | **Para quién es** | Filtro | Estudiantes, técnicos y desarrolladores junior en LATAM; requisitos mínimos |
-| 7 | **Sobre Kevin** | Confianza | Técnico en desarrollo de software, estudiante de Ingeniería de Software, trabajo real en análisis de datos del sector público |
+| 7 | **Sobre el autor** | Confianza | Sergio Andrés Castro Cano, ingeniero de sistemas con más de 5 años en desarrollo y soporte de soluciones |
 | 8 | **Gratis vs. Premium** | Monetización | Tabla comparativa (ver sección 7) |
 | 9 | **FAQ** | Objeciones | ¿Necesito pagar Claude? ¿Sirve en Windows? ¿Cuánto tiempo? ¿Es oficial de Anthropic? (No) |
 | 10 | **CTA final** | Conversión | Formulario de correo + botón a LinkedIn |
