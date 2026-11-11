@@ -6,8 +6,8 @@ export const SITE = {
   nombre: 'Claude Code desde cero',
   descripcion:
     'Aprende a programar con IA en 40 minutos al día. Proyecto real VisitasAPI en .NET 8. Gratis y en español.',
-  autor: 'Kevin Castro Gómez',
-  ogDefault: '/og/default.png',
+  autor: 'Sergio Andrés Castro Cano',
+  ogDefault: '/og/og-default.png',
   linkedin: (env.PUBLIC_LINKEDIN_URL as string | undefined) || 'https://www.linkedin.com/',
   contacto: (env.PUBLIC_CONTACT_EMAIL as string | undefined) || '',
   // Endpoint del servicio de email (MailerLite, Brevo o Buttondown). Vacío = modo sin servicio.
