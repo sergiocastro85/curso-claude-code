@@ -55,5 +55,13 @@ Modo: oscuro por defecto; claro automático con `prefers-color-scheme: light`; s
 ## Marca
 Favicon propio: `public/favicon.svg` (prompt de terminal `>_` en acento sobre fondo cálido). Descargo de no afiliación obligatorio en el pie.
 
+## Imágenes Open Graph
+- Formato: PNG 1200x630, < 300 KB (actual: 34-49 KB). Salida en `public/og/`: `og-default.png` (landing) y una por módulo con el nombre del archivo de `src/content/modulos` (`01-introduccion.png` ... `10-proyecto-final.png`).
+- Estilo: ventana de terminal en modo oscuro. Colores = tokens oscuros: fondo `--bg`, marco y número decorativo `--surface-2`, texto `--text`, gancho y pie `--text-muted`, etiqueta/cursor/segmentos activos `--accent`, segmentos inactivos `--border`.
+- Contenido: prompt `$ claude --modulo N`, etiqueta "MÓDULO NN · SEMANA N" (mono, acento), título en sans bold (máx. 2 líneas, 40-76 px), gancho de una línea (mín. 26 px), barra de 10 semanas, pie "Claude Code desde cero · curso gratuito en español". Sin logos de terceros ni degradados.
+- Legibilidad móvil: el texto más pequeño (pie, 24 px) queda ~8 px al verse a 375 px de ancho; el contenido clave (título, etiqueta) supera 20 px equivalentes.
+- Regenerar: `pip install pillow pyyaml` y `py scripts/generar-og.py` (Windows) o `python3 scripts/generar-og.py` (Linux/macOS). Usa Segoe UI/Consolas en Windows y Inter/DejaVu en Linux; `OG_FUENTES_DIR` permite una carpeta propia. Al cambiar tokens de color, actualizar `COLORES` en el script. Los ganchos viven en `GANCHOS` dentro del script.
+- Nota: `public/og/default.png` y `default.svg` son anteriores y no los usa el script; el desarrollador puede eliminarlos si ninguna página los referencia.
+
 ## Pendiente de diseño
-Componentes `.astro`, imágenes OG (1200x630, < 300 KB, `public/og/`) y revisión de accesibilidad real con Lighthouse.
+Componentes `.astro` y revisión de accesibilidad real con Lighthouse.
