@@ -7,7 +7,7 @@ import sitemap from '@astrojs/sitemap';
 // PENDIENTE: cambiar `site` por el dominio real antes de publicar.
 // Se usa para URLs canónicas, Open Graph y sitemap.
 export default defineConfig({
-  site: 'https://curso-claude-code.pages.dev',
+  site: 'https://curso-claude-code.sergiocastro86.workers.dev',
   integrations: [sitemap({ filter: (page) => !page.includes('/gracias') })],
   vite: {
     plugins: [tailwindcss()],

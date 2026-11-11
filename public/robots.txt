@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
 
-# PENDIENTE: actualizar con el dominio real al publicar.
-Sitemap: https://curso-claude-code.pages.dev/sitemap-index.xml
+Sitemap: https://curso-claude-code.sergiocastro86.workers.dev/sitemap-index.xml
